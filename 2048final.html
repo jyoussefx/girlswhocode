@@ -1,0 +1,320 @@
+<html>
+	<head>
+		<title> 2048 </title>
+		<style>
+			html, body {
+			  margin: 0;
+			  padding: 5px;
+			  background: #faf8ef;
+			  color: #ffffff;
+			  font-family: "Helvetica Neue", Arial, sans-serif;
+			  font-size: 46px; 
+			  font-weight: bolder;
+			}
+
+			.grid-container {
+			  position: absolute;
+			  z-index: 1; 
+			}
+
+			.grid-row {
+			  margin-bottom: 15px; 
+			}
+
+  			.grid-row:last-child {
+    			margin-bottom: 0; 
+			}	
+
+			.grid-row:after {
+				content: "";
+			    display: block;
+			    clear: both;
+			}
+
+			.grid-cell {
+			  width: 106.25px;
+			  height: 106.25px;
+			  margin-right: 15px;
+			  float: left;
+			  border-radius: 3px;
+			  text-align: center;
+			  background: rgba(238, 228, 218, 0.35); 
+			}
+
+			.grid-cell:last-child {
+			    margin-right: 0; 
+			}
+
+			.game-container {
+				  margin-top: 40px;
+				  position: relative;
+				  padding: 15px;
+				  cursor: default;
+				  background: #bbada0;
+				  border-radius: 6px;
+				  width: 500px;
+				  height: 500px;
+				  -webkit-box-sizing: border-box;
+				  -moz-box-sizing: border-box;
+				  box-sizing: border-box; 
+			}
+		</style>
+
+		<script>
+		function runGame(){
+			for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){
+				var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]!=0){
+						document.getElementById(matrixID).innerHTML=matrix[row][column];
+						}
+					else{
+					 document.getElementById(matrixID).innerHTML="";
+					 }
+					}
+				}
+			}
+		function colorMatrix(){
+		for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){	
+					var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]==2){
+						document.getElementById(matrixID).style.background="#990000";
+						}
+					else if(matrix[row][column]==4){
+						document.getElementById(matrixID).style.background="#f6ba00";
+						}
+					else if(matrix[row][column]==8){
+						document.getElementById(matrixID).style.background="#ffd700";
+						}
+					else if(matrix[row][column]==16){
+						document.getElementById(matrixID).style.background="#07a86d";
+						}
+					else if(matrix[row][column]==32){
+						document.getElementById(matrixID).style.background="#397fdb";
+						}
+					else if(matrix[row][column]==64){
+						document.getElementById(matrixID).style.background="#a63ffd";
+						}
+					else if(matrix[row][column]==128){
+						document.getElementById(matrixID).style.background="#ffa7b6";
+						}
+					else if(matrix[row][column]==256){
+						document.getElementById(matrixID).style.background="#afbec5";
+						}
+						else if(matrix[row][column]==512){
+						document.getElementById(matrixID).style.background="#e30472";
+						}
+					else if(matrix[row][column]==1024){
+						document.getElementById(matrixID).style.background="#4e3e81";
+						}
+					else if(matrix[row][column]==2048){
+						document.getElementById(matrixID).style.background="#db9539";
+						}
+					else if(matrix[row][column]==0){
+						document.getElementById(matrixID).style.background="#faf8ef";
+						}
+			}
+		}
+		}
+	
+		
+var r=Math.floor(Math.random()*4);
+var m=Math.floor(Math.random()*4);
+var t=Math.floor(Math.random()*4);
+var g=Math.floor(Math.random()*4);
+			var matrix  = [[0,0,0,0], 
+						   [0,0,0,0],
+						   [0,0,0,0],
+						   [0,0,0,0]];
+						   randomTwo();
+						  /* printMatrix();*/
+			/*	   
+				for(row=0;row<matrix.length;row++){
+					for(column=0;column<matrix[row].length;column++){
+						matrix[r][m]=2;	
+						matrix[t][g]=2;	
+						document.write(matrix[row][column]," ");
+					}
+					document.write("</br>");
+				}
+				*/
+				
+				
+				function randomTwo(){
+			//document.write("here");
+			var r=Math.floor(Math.random()*4);
+			var m=Math.floor(Math.random()*4);
+			var t=Math.floor(Math.random()*4);
+			var g=Math.floor(Math.random()*4);
+			matrix[r][m]=2;	
+			matrix[t][g]=2;	
+				}
+//function for printing matrix 
+
+	function printMatrix(){
+			for(row=0;row<matrix.length;row++){
+							for(column=0;column<matrix[row].length;column++){
+								document.write(matrix[row][column]," ");
+										}
+							document.write("</br>");
+							}
+			}
+			
+// this is the arrow keys thing. put it after the code u have already 
+
+
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37:
+            alert('left');
+			
+for(row=0;row<matrix.length;row++){
+for(column=1;column<matrix[row].length;column++){
+	if(matrix[row][column]==matrix[row][column-1]){
+		matrix[row][column-1]*=2;
+		matrix[row][column]=0;
+		}
+		else if(matrix[row][column-1]==0){
+			matrix[row][column-1]=matrix[row][column];
+			matrix[row][column]=0;
+	    }	
+			}
+				}
+	colorMatrix();
+	 randomTwo();
+	for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){
+				var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]!=0){
+						document.getElementById(matrixID).innerHTML=matrix[row][column];
+						}
+					else{
+					 document.getElementById(matrixID).innerHTML="";
+					 }
+					}
+				}
+			break;
+			case 38:
+            alert('up');
+for(column=0;column<matrix.length;column++){			
+for(row=1;row<matrix.length[column];row++){
+	if(matrix[row][column]==matrix[row-1][column]){
+		matrix[row-1][column]*=2;
+		matrix[row][column]=0;
+		}
+		else if(matrix[row-1][column]==0){
+			matrix[row-1][column]=matrix[row][column];
+			matrix[row][column]=0;
+	    }	
+			}
+				}
+	
+	for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){
+				var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]!=0){
+						document.getElementById(matrixID).innerHTML=matrix[row][column];
+						}
+					else{
+					 document.getElementById(matrixID).innerHTML="";
+					 }
+					}
+				}	
+				
+			break;
+			case 39:
+            alert('right');
+			
+for(row=0;row<matrix.length;row++){
+for(column=1;column<matrix[row].length;column++){
+	if(matrix[row][column]==matrix[row][column+1]){
+		matrix[row][column+1]*=2;
+		matrix[row][column]=0;
+		}
+		else if(matrix[row][column+1]==0){
+			matrix[row][column+1]=matrix[row][column];
+			matrix[row][column]=0;
+	    }	
+			}
+				}
+	
+	for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){
+				var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]!=0){
+						document.getElementById(matrixID).innerHTML=matrix[row][column];
+						}
+					else{
+					 document.getElementById(matrixID).innerHTML="";
+					 }
+					}
+				}	
+			break;
+			case 40:
+            alert('down');
+for(column=0;column<matrix.length;column++){		
+for(row=0;row<matrix.length[column];row++){
+	if(matrix[row][column]==matrix[row+1][column]){
+		matrix[row+1][column]*=2;
+		matrix[row][column]=0;
+		}
+		else if(matrix[row+1][column]==0){
+			matrix[row+1][column]=matrix[row][column];
+			matrix[row][column]=0;
+	    }	
+			}
+				}
+	for(var row=0;row<matrix.length;row++){
+				for(var column=0;column<matrix[row].length;column++){
+				var matrixID = "r"+row+"c"+column;
+					if(matrix[row][column]!=0){
+						document.getElementById(matrixID).innerHTML=matrix[row][column];
+						}
+					else{
+					 document.getElementById(matrixID).innerHTML="";
+					 }
+					}
+				}				
+
+	
+	
+	
+	
+					}
+						};
+
+		</script>
+
+	</head>
+	<body onload="runGame()">
+		<div class="game-container">
+			<div class="grid-container">
+				<div class="grid-row">
+					<div class="grid-cell" id="r0c0"></div>
+					<div class="grid-cell" id="r0c1"></div>
+					<div class="grid-cell" id="r0c2"></div>
+					<div class="grid-cell" id="r0c3"></div>
+				</div>
+					<div class="grid-row">
+					<div class="grid-cell" id="r1c0"></div>
+					<div class="grid-cell" id="r1c1"></div>
+					<div class="grid-cell" id="r1c2"></div>
+					<div class="grid-cell" id="r1c3"></div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-cell" id="r2c0"></div>
+					<div class="grid-cell" id="r2c1"></div>
+					<div class="grid-cell" id="r2c2"></div>
+					<div class="grid-cell" id="r2c3"></div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-cell" id="r3c0"></div>
+					<div class="grid-cell" id="r3c1"></div>
+					<div class="grid-cell" id="r3c2"></div>
+					<div class="grid-cell" id="r3c3"></div>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>
