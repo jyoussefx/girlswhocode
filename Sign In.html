@@ -1,0 +1,44 @@
+<!--1rm_yqGAXgqnyJvEz7pXhQjiAvjdrlxBGHjqWiV_aN4w -->
+<html>
+	<title> Sign In Frame </title>
+		<head>
+			<script src="tabletop1.3.4.js"></script>
+			
+			<!--<input type="users" id="name"/>
+			<button onclick="myJsFunction()">NAMED</button>-->
+		</head>
+		<!--<body>
+		<iframe src="https://docs.google.com/forms/d/13R2Zgx_FNDLcf2CphM79MUCvU665Zvj2-LJoU9gk60k/viewform?embedded=true" width="1350" height="600" frameborder="0" marginheight="0" marginwidth="0">
+		Loading...</iframe>
+		</body>-->
+					<script>
+					var users={};
+					var username;
+					var password;
+					function checkLogin() {
+				    var username = document.forms["loginForm"]["username"];
+				    validate the form. Return false and the form will not be posted to server.
+		         	}
+				users.push({
+						key:   username,
+						value: password
+				});
+					console.log(users);
+					</script>
+					<script type="text/javascript">
+						function myJsFunction(){
+							var users=document.getElementById('name').value;
+							}
+					</script>
+			<body>
+			
+					<form name="loginForm" method="POST">
+					Username: <input type="text" id="username" value="" />
+					<br />
+					Password: <input type="password" id="password" value="" />
+					<input type="submit" name="submitButton" />
+				</form>
+			</body>
+			
+</html>
+			
