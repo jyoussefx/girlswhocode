@@ -22,5 +22,10 @@ $(document).ready(function(){
 		  userEmail[entereduserName] = enteredEmail
 		  userPhone[entereduserName] = enteredNum
 		  
+		  console.log(userFullName);
+		  
+         //OR var enteredName = $('#enteredFormName').val();
+         //update the html in the second form to show the user's entered name
+        // $('#fixedFormName').val(enteredName);
         });
     });
