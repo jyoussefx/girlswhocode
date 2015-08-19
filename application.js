@@ -18,11 +18,9 @@ $(document).ready(function(){
 		  var enteredNum = document.getElementById('phoneNumber').value;
 
 		  userFullName[entereduserName] = enteredName
+		  userPIN[entereduserName] = enteredPIN
+		  userEmail[entereduserName] = enteredEmail
+		  userPhone[entereduserName] = enteredNum
 		  
-		  console.log(userFullName);
-		  
-         //OR var enteredName = $('#enteredFormName').val();
-         //update the html in the second form to show the user's entered name
-        // $('#fixedFormName').val(enteredName);
         });
     });
