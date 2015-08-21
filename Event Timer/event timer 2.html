@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+	
+		<span id="countdown" class="timer"></span>
+		<script>
+		var s=10;
+		var m=1;
+		var h=1;
+		var seconds = (parseInt(h)*60*60) + (parseInt(m)*60) + (parseInt(s));
+		function timePassed() {
+			var minutes = Math.round((seconds - 30)/60);
+			var hours = Math.round((minutes - 30)/60)
+			var remainingSeconds = seconds % 60;
+			var remainingMinutes = minutes % 60;
+			var remainingHours = hours % 60;
+			if (remainingSeconds < 10) {
+				remainingSeconds = "0" + remainingSeconds;  
+			}
+			if (remainingMinutes < 10) {
+				remainingMinutes = "0" + remainingMinutes;  
+			}
+			if (remainingHours < 10) {
+				remainingHours = "0" + remainingHours;  
+			}
+			document.getElementById('countdown').innerHTML = remainingHours + ":" + remainingMinutes + ":" + remainingSeconds;
+
+			if (seconds == 0) {
+				clearInterval(countdownTimer);
+				document.getElementById('countdown').innerHTML = "Time's up!";
+			}
+			else {
+				seconds--;
+			}
+		}
+		 
+		var countdownTimer = setInterval('timePassed()', 1000);
+		</script>
+		
+	</body>
+
+</html>
