@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	
+		<link rel="stylesheet" href="event%20timer.css" />
+		
 	</head>
 
 	<body>
-	
-		<form name="timer" action="event%20timer.php" method="post">
-		  Hours: <input type="text" name="hr" id="hr"><br>
-		  Minutes: <input type="text" name="mn" id="mn"><br>
-		  Seconds: <input type="text" name="sc" id="sc"><br><br>
-		  <input type=button onclick="myFunction(); " value="Start Timer">
-		</form>
-		<span id="countdown" class="timer"></span>
-		<script>
-		var s=10;
-		var m=1;
-		var h=1;
-		var seconds = (parseInt(h)*60*60) + (parseInt(m)*60) + (parseInt(s));
+		<div id="form">
+			<script type="text/javascript">
+				function unhide(divID, otherDivId) {
+				var item = document.getElementById(divID);
+				if (item) {
+						item.className=(item.className=='hidden')?'unhidden':'hidden';
+					}
+					document.getElementById(otherDivId).className = 'hidden';
+			}
+			</script>
+			
+			<form name="timer" action="event%20timer.php" method="post">
+				Hours: <input type="text" name="hr" id="hr"><br>
+				Minutes: <input type="text" name="mn" id="mn"><br>
+				Seconds: <input type="text" name="sc" id="sc"><br><br>
+				<input type=button onclick="startTimer(); unhide('clock', 'form')" value="Start Timer">
+			</form>
+		</div>
 		
-		function myFunction(){
-			s=document.getElementById('sc').value;
-			m=document.getElementById('mn').value;
-			h=document.getElementById('hr').value;
-			seconds = (parseInt(h)*60*60) + (parseInt(m)*60) + (parseInt(s));
-		}
-		function timePassed() {
-			var minutes = Math.round((seconds - 30)/60);
-			var hours = Math.round((minutes - 30)/60)
-			var remainingSeconds = seconds % 60;
-			var remainingMinutes = minutes % 60;
-			var remainingHours = hours % 60;
-			if (remainingSeconds < 10) {
-				remainingSeconds = "0" + remainingSeconds;  
-			}
-			if (remainingMinutes < 10) {
-				remainingMinutes = "0" + remainingMinutes;  
-			}
-			if (remainingHours < 10) {
-				remainingHours = "0" + remainingHours;  
-			}
-			document.getElementById('countdown').innerHTML = remainingHours + ":" + remainingMinutes + ":" + remainingSeconds;
+		<div id="clock" class="hidden">
+			<span id="countdown" class="timer"></span>
+			<script>
+				var s;
+				var m;
+				var h;
+				var seconds = (parseInt(h)*60*60) + (parseInt(m)*60) + (parseInt(s));
+				
+				function startTimer(){
+					s=document.getElementById('sc').value;
+					m=document.getElementById('mn').value;
+					h=document.getElementById('hr').value;
+					seconds = (parseInt(h)*60*60) + (parseInt(m)*60) + (parseInt(s));
+					document.getElementById("yes").style.display = "none";
+					document.getElementById("no").style.display = "none";
+					document.getElementById("extend").style.display = "none";
+				}
+				function timePassed() {
+					var minutes = Math.round((seconds - 30)/60);
+					var hours = Math.round((minutes - 30)/60)
+					var remainingSeconds = seconds % 60;
+					var remainingMinutes = minutes % 60;
+					var remainingHours = hours % 60;
+					if (remainingSeconds < 10) {
+						remainingSeconds = "0" + remainingSeconds;  
+					}
+					if (remainingMinutes < 10) {
+						remainingMinutes = "0" + remainingMinutes;  
+					}
+					if (remainingHours < 10) {
+						remainingHours = "0" + remainingHours;  
+					}
+					document.getElementById('countdown').innerHTML = remainingHours + ":" + remainingMinutes + ":" + remainingSeconds;
 
-			if (seconds == 0) {
-				clearInterval(countdownTimer);
-				document.getElementById('countdown').innerHTML = "Time's up!";
-			}
-			else {
-				seconds--;
-			}
-		}
-		 
-		var countdownTimer = setInterval('timePassed()', 1000);
-		</script>
-		
+					if (seconds == 0) {
+						clearInterval(countdownTimer);
+						document.getElementById('countdown').innerHTML = "Time's up! Are you safe?";
+						document.getElementById("yes").style.display = "block";
+						document.getElementById("no").style.display = "block";
+						document.getElementById("extend").style.display = "block";
+					}
+					else {
+						seconds--;
+					}
+				}
+				 
+				var countdownTimer = setInterval('timePassed()', 1000);
+			</script>
+			<input id="yes" type=button onClick="enterPin()" value="Yes, I am safe">
+			<input id="no" type=button onClick="sendText()" value="No, send emergency text">
+			<input id="extend" type=button onClick="location.href='event%20timer.html'; enterPin()" value="Extend time">
+		</div>
 	</body>
 
 </html>
