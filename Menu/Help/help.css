@@ -21,5 +21,6 @@ ul {
 }
 
 p {
-	text-align: justify;;
+	text-align: justify;
+	padding-top:5px;
 }
